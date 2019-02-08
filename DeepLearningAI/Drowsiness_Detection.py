@@ -4,7 +4,10 @@ import imutils
 import dlib
 import cv2
 import requests
-import time
+import datetime
+import notification
+import TkinterInitialScreen
+import pickle
 
 def eye_aspect_ratio(eye):
 	A = distance.euclidean(eye[1], eye[5])
@@ -12,6 +15,10 @@ def eye_aspect_ratio(eye):
 	C = distance.euclidean(eye[0], eye[3])
 	ear = (A + B) / (2.0 * C)
 	return ear
+
+TkinterInitialScreen.StartUI()
+data=pickle.load(open("Name.txt",'rb'))
+print(data)
 	
 thresh = 0.25
 frame_check = 30
@@ -43,15 +50,17 @@ while True:
 			flag += 1
 			print (flag)
 			if flag >= frame_check:
-				pass
-				print ("Drowsy")
-				print(int(time.time()))
-				# r = requests.post('https://httpbin.org/post', data = {'userid':'1',})
+				now = datetime.datetime.now()
+				print ("Drowsy at ",now.hour)
+				notification.Notify("Feeling tired?","You just dossed off buddy!")
+				flag=1
+				# print(int(time.time()))
+				# r = requests.post('https://httpbin.org/post', data = {'userid':1, "time": now.hour})
 				# print(r)
 		else:
 			flag = 0
 	# cv2.imshow("Frame", frame)
-	key = cv2.waitKey(1) & 0xFF
-	if key == ord("q"):
-		break
+	# key = cv2.waitKey(1) & 0xFF
+	# if key == ord("q"):
+	# 	break
 cv2.destroyAllWindows()
