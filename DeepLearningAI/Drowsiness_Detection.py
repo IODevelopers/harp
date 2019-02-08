@@ -54,7 +54,7 @@ while True:
 				now = datetime.datetime.now()
 				hour_data = int(now.hour)
 				print ("Drowsy at ",hour_data)
-				url = "http://192.168.43.138:8000/insert_to_db"
+				url = "http://13.232.189.112:8000/insert_to_db"
 				data = {"userid":1, "time": hour_data}
 				headers = {'Content-type': 'application/json'}
 				r = requests.post(url, data = json.dumps(data),headers=headers)
