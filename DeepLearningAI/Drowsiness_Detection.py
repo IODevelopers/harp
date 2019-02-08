@@ -8,6 +8,7 @@ import datetime
 import notification
 import TkinterInitialScreen
 import pickle
+import json
 
 def eye_aspect_ratio(eye):
 	A = distance.euclidean(eye[1], eye[5])
@@ -51,11 +52,15 @@ while True:
 			print (flag)
 			if flag >= frame_check:
 				now = datetime.datetime.now()
-				print ("Drowsy at ",now.hour)
+				hour_data = int(now.hour)
+				print ("Drowsy at ",hour_data)
+				url = "http://192.168.43.138:8000/insert_to_db"
+				data = {"userid":1, "time": hour_data}
+				headers = {'Content-type': 'application/json'}
+				r = requests.post(url, data = json.dumps(data),headers=headers)
 				notification.Notify("Feeling tired?","You just dossed off buddy!")
 				flag=1
 				# print(int(time.time()))
-				# r = requests.post('https://httpbin.org/post', data = {'userid':1, "time": now.hour})
 				# print(r)
 		else:
 			flag = 0
