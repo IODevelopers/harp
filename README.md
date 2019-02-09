@@ -9,7 +9,7 @@
     ```
     pip install -r requirements.txt
     ```
-3. Run the python file [Drowsiness_Detection.py](/DeepLearningAI/Drowsiness_Detection.py)
+3. Run the python file [Harp.py](/DeepLearningAI/Harp.py)
     ```
     python Drowsiness_Detection.py
     ```
