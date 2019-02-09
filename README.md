@@ -11,7 +11,7 @@
     ```
 3. Run the python file [Harp.py](/DeepLearningAI/Harp.py)
     ```
-    python Drowsiness_Detection.py
+    python Harp.py
     ```
 
 ## :globe_with_meridians: [Organisation](https://www.iodev.co.in/)
