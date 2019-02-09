@@ -9,6 +9,7 @@ import notification
 import TkinterInitialScreen
 import pickle
 import json
+import webbrowser
 
 def eye_aspect_ratio(eye):
 	A = distance.euclidean(eye[1], eye[5])
@@ -20,8 +21,13 @@ def eye_aspect_ratio(eye):
 TkinterInitialScreen.StartUI()
 try:
 	from infi.systray import SysTrayIcon
-	menu_options = ((None, None, None),)
-	systray = SysTrayIcon("logo.ico", "Harp", menu_options)
+	def web_link(systray):
+	    webbrowser.open("http://13.232.189.112:8000")
+	def say_bye(systray):
+		print("Byee World!")
+		exit()
+	menu_options = (( "View Dashboard",None, web_link),)
+	systray = SysTrayIcon("logo.ico", "Harp", menu_options,on_quit=say_bye)
 	systray.start()
 except Exception as e:
 	print(e)
