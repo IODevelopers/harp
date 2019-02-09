@@ -1,4 +1,1 @@
-@echo off
-CONSOLESTATE /Hide
-start python Home.py
-exit
+python Drowsiness_Detection.py

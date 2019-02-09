@@ -7,5 +7,5 @@ def Notify(MessageTitle,MessageBody):
 	                   icon_path="logo.ico",
 	                   duration=3,threaded=True)
 	from playsound import playsound
-	playsound('Notification.mp3')
+	playsound('Notification2.mp3')
 	while toaster.notification_active(): time.sleep(0.1)

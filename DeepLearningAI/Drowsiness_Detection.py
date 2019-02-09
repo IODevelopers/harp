@@ -18,6 +18,13 @@ def eye_aspect_ratio(eye):
 	return ear
 
 TkinterInitialScreen.StartUI()
+try:
+	from infi.systray import SysTrayIcon
+	menu_options = ((None, None, None),)
+	systray = SysTrayIcon("logo.ico", "Harp", menu_options)
+	systray.start()
+except Exception as e:
+	print(e)
 data=pickle.load(open("Name.txt",'rb'))
 print(data)
 	
@@ -54,10 +61,13 @@ while True:
 				now = datetime.datetime.now()
 				hour_data = int(now.hour)
 				print ("Drowsy at ",hour_data)
-				url = "http://13.232.189.112:8000/insert_to_db"
-				data = {"userid":1, "time": hour_data}
-				headers = {'Content-type': 'application/json'}
-				r = requests.post(url, data = json.dumps(data),headers=headers)
+				try:
+					url = "http://13.232.189.112:8000/insert_to_db"
+					data = {"userid":1, "time": hour_data}
+					headers = {'Content-type': 'application/json'}
+					r = requests.post(url, data = json.dumps(data),headers=headers)
+				except Exception as e:
+					print(e)
 				notification.Notify("Feeling tired?","You just dossed off buddy!")
 				flag=1
 				# print(int(time.time()))
